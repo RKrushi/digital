@@ -1,0 +1,2467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiBoost - Digital Marketing Agency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --secondary: #ec4899;
+            --accent: #f59e0b;
+            --dark: #0f0f23;
+            --dark-lighter: #1a1a2e;
+            --dark-card: #16213e;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--dark);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            background: var(--dark);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(15, 15, 35, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e2e8f0;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .hero-bg::before,
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, transparent 70%);
+        }
+
+        .hero-bg::before {
+            width: 600px;
+            height: 600px;
+            top: -200px;
+            right: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero-bg::after {
+            width: 400px;
+            height: 400px;
+            bottom: -100px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite reverse;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            animation: rise 15s linear infinite;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -30px) rotate(90deg); }
+            50% { transform: translate(-20px, 20px) rotate(180deg); }
+            75% { transform: translate(20px, 30px) rotate(270deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s backwards;
+            font-weight: 300;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            transition: left 0.4s;
+            z-index: -1;
+        }
+
+        .btn-secondary:hover::before {
+            left: 0;
+        }
+
+        .btn-secondary:hover {
+            color: var(--primary);
+            border-color: white;
+        }
+
+        /* Services Section */
+        #services {
+            padding: 5rem 2rem;
+            background: var(--dark);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #f1f5f9;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(236, 72, 153, 0.3));
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 0;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.4);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+
+        .service-card:hover * {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card:hover .service-icon {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Features Section */
+        #features {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #features::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            left: -200px;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(124, 58, 237, 0.5);
+            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.3);
+        }
+
+        .feature-icon-large {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Process Section */
+        #process {
+            padding: 5rem 2rem;
+            background: var(--dark);
+        }
+
+        .process-timeline {
+            max-width: 1000px;
+            margin: 3rem auto;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+
+        .process-step {
+            display: flex;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .process-content {
+            width: 45%;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            position: relative;
+        }
+
+        .process-step:nth-child(odd) .process-content {
+            margin-right: auto;
+        }
+
+        .process-step:nth-child(even) .process-content {
+            margin-left: auto;
+        }
+
+        .process-number {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .process-content h3 {
+            color: #f1f5f9;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .process-content p {
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        /* Technologies Section */
+        #technologies {
+            padding: 5rem 2rem;
+            background: var(--dark-lighter);
+        }
+
+        .tech-grid {
+            max-width: 1200px;
+            margin: 3rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.4);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-item h4 {
+            color: #f1f5f9;
+            font-size: 1.1rem;
+        }
+
+        /* CTA Banner Section */
+        .cta-banner {
+            padding: 5rem 2rem;
+            background: var(--gradient-2);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cta-banner h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .cta-banner p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* FAQ Section */
+        #faq {
+            padding: 5rem 2rem;
+            background: var(--dark);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1.5rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.3);
+            border-color: rgba(124, 58, 237, 0.4);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #f1f5f9;
+            user-select: none;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 2rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 2rem 1.5rem;
+        }
+
+        .faq-answer p {
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        #about {
+            padding: 5rem 2rem;
+            background: var(--dark-lighter);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .about-image::before {
+            content: '📊';
+            position: absolute;
+            font-size: 15rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.15;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #f1f5f9;
+        }
+
+        .about-text p {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Portfolio Section */
+        #portfolio {
+            padding: 5rem 2rem;
+            background: var(--dark);
+        }
+
+        .portfolio-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .portfolio-item:hover {
+            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.4);
+            transform: translateY(-10px);
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+
+        .portfolio-item:nth-child(1) .portfolio-image {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .portfolio-item:nth-child(2) .portfolio-image {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .portfolio-item:nth-child(3) .portfolio-image {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .portfolio-item:nth-child(4) .portfolio-image {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .portfolio-item:nth-child(5) .portfolio-image {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+
+        .portfolio-item:nth-child(6) .portfolio-image {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            filter: brightness(0.9);
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.15) rotate(2deg);
+            filter: brightness(1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-overlay p {
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            padding: 5rem 2rem;
+            background: var(--dark-lighter);
+        }
+
+        .testimonials-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+            margin-bottom: 2rem;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            color: #f1f5f9;
+            margin-bottom: 0.3rem;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Pricing Section */
+        #pricing {
+            padding: 5rem 2rem;
+            background: var(--dark);
+        }
+
+        .pricing-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(236, 72, 153, 0.3));
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(124, 58, 237, 0.5);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.5);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.4);
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+
+        .pricing-card.featured:hover {
+            transform: translateY(-10px) scale(1.07);
+        }
+
+        .pricing-badge {
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+        }
+
+        .pricing-card.featured h3 {
+            color: white;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #f1f5f9;
+        }
+
+        .pricing-card.featured .price {
+            color: white;
+        }
+
+        .price-period {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-card.featured .price-period {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+        }
+
+        .pricing-card.featured .pricing-features li {
+            border-bottom-color: rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.95);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .pricing-card.featured .pricing-features li::before {
+            color: white;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+        }
+
+        /* Blog Section */
+        #blog {
+            padding: 5rem 2rem;
+            background: var(--dark-lighter);
+        }
+
+        .blog-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.4);
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .blog-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+        }
+
+        .blog-card p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 5rem 2rem;
+            background: var(--dark-lighter);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+        }
+
+        .contact-info p {
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #f1f5f9;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+            color: #f1f5f9;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: rgba(15, 15, 35, 0.95);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                width: 100%;
+                padding: 2rem;
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+                transition: left 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-banner h2 {
+                font-size: 2rem;
+            }
+
+            .cta-banner p {
+                font-size: 1.1rem;
+            }
+
+            .process-timeline::before {
+                left: 30px;
+            }
+
+            .process-step {
+                flex-direction: column !important;
+            }
+
+            .process-content {
+                width: 100%;
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+
+            .process-number {
+                left: 30px;
+                transform: translateX(0);
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">DigiBoost 🚀</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1>Transform Your Digital Presence</h1>
+            <p class="subtitle">Elevate Your Brand with <span class="highlight">Data-Driven Marketing</span></p>
+            <p>We help businesses grow through strategic digital marketing solutions that deliver real, measurable results</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Start Your Journey</a>
+                <a href="#services" class="btn btn-secondary">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <h2 class="section-title" style="color: white;">Why Choose DigiBoost?</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Industry-leading solutions for modern businesses</p>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon-large">⚡</div>
+                <h3>Lightning Fast Results</h3>
+                <p>See measurable improvements in your metrics within the first 30 days</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon-large">🎯</div>
+                <h3>Targeted Approach</h3>
+                <p>Precision marketing that reaches your ideal customers at the right time</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon-large">💎</div>
+                <h3>Premium Quality</h3>
+                <p>Award-winning campaigns that set industry standards</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon-large">📈</div>
+                <h3>Scalable Growth</h3>
+                <p>Solutions that grow with your business from startup to enterprise</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Comprehensive digital marketing solutions tailored to your needs</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Social Media Marketing</h3>
+                <p>Build a strong presence on social platforms with engaging content and strategic campaigns that connect with your audience.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>SEO Optimization</h3>
+                <p>Improve your search rankings and drive organic traffic with our proven SEO strategies and technical optimization.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📧</div>
+                <h3>Email Marketing</h3>
+                <p>Nurture leads and boost conversions with personalized email campaigns that deliver results.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💰</div>
+                <h3>PPC Advertising</h3>
+                <p>Maximize ROI with targeted pay-per-click campaigns across Google Ads, Facebook, and other platforms.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✍️</div>
+                <h3>Content Marketing</h3>
+                <p>Create compelling content that tells your story and engages your audience across all channels.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Analytics & Reporting</h3>
+                <p>Make data-driven decisions with comprehensive analytics and actionable insights.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-content">
+            <div class="about-image"></div>
+            <div class="about-text">
+                <h2>About DigiBoost</h2>
+                <p>We are a full-service digital marketing agency dedicated to helping businesses grow online. With over 10 years of experience, we've helped hundreds of companies achieve their marketing goals.</p>
+                <p>Our team of experts combines creativity with data-driven strategies to deliver measurable results. From startups to enterprises, we tailor our approach to meet your unique needs.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Team Members</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process">
+        <h2 class="section-title">Our Proven Process</h2>
+        <p class="section-subtitle">A strategic approach to digital marketing success</p>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="process-content">
+                    <h3>🔍 Discovery & Research</h3>
+                    <p>We dive deep into your business, industry, and target audience to understand your unique challenges and opportunities. Our comprehensive audit identifies areas for immediate improvement.</p>
+                </div>
+                <div class="process-number">1</div>
+            </div>
+            <div class="process-step">
+                <div class="process-content">
+                    <h3>🎯 Strategy Development</h3>
+                    <p>Our experts craft a customized marketing strategy aligned with your business goals. We define KPIs, target audiences, and the optimal channel mix for maximum ROI.</p>
+                </div>
+                <div class="process-number">2</div>
+            </div>
+            <div class="process-step">
+                <div class="process-content">
+                    <h3>🚀 Implementation</h3>
+                    <p>We execute the strategy with precision, launching campaigns across selected channels. Our team creates compelling content, optimizes campaigns, and manages all technical aspects.</p>
+                </div>
+                <div class="process-number">3</div>
+            </div>
+            <div class="process-step">
+                <div class="process-content">
+                    <h3>📊 Optimization & Growth</h3>
+                    <p>Continuous monitoring and data analysis allow us to refine strategies in real-time. We test, learn, and optimize to ensure sustained growth and exceptional results.</p>
+                </div>
+                <div class="process-number">4</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies">
+        <h2 class="section-title">Technologies We Master</h2>
+        <p class="section-subtitle">Leveraging the best tools for exceptional results</p>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <div class="tech-icon">🔍</div>
+                <h4>Google Analytics</h4>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">📱</div>
+                <h4>Meta Business</h4>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🎨</div>
+                <h4>Adobe Creative</h4>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">📧</div>
+                <h4>Mailchimp</h4>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🔗</div>
+                <h4>HubSpot</h4>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">📊</div>
+                <h4>SEMrush</h4>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">💬</div>
+                <h4>Hootsuite</h4>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🎯</div>
+                <h4>Google Ads</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <h2 class="section-title">Our Portfolio</h2>
+        <p class="section-subtitle">Recent projects we're proud of</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-image">🛍️</div>
+                <div class="portfolio-overlay">
+                    <h3>E-commerce Relaunch</h3>
+                    <p>300% increase in online sales</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">🏥</div>
+                <div class="portfolio-overlay">
+                    <h3>Healthcare Campaign</h3>
+                    <p>Reached 2M+ impressions</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">🍔</div>
+                <div class="portfolio-overlay">
+                    <h3>Restaurant Brand</h3>
+                    <p>50% boost in foot traffic</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">💼</div>
+                <div class="portfolio-overlay">
+                    <h3>B2B Lead Generation</h3>
+                    <p>Generated 500+ qualified leads</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">🎓</div>
+                <div class="portfolio-overlay">
+                    <h3>Education Platform</h3>
+                    <p>10,000+ new enrollments</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">🏠</div>
+                <div class="portfolio-overlay">
+                    <h3>Real Estate Success</h3>
+                    <p>Sold 100+ properties</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <p class="section-subtitle">Don't just take our word for it</p>
+        <div class="testimonials-slider">
+            <div class="testimonial" id="testimonial">
+                <p class="testimonial-text">"DigiBoost transformed our online presence completely. Their strategic approach to social media marketing helped us reach our target audience effectively. We saw a 250% increase in engagement within just 3 months!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JD</div>
+                    <div class="author-info">
+                        <h4>John Doe</h4>
+                        <p>CEO, TechStart Inc</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing">
+        <h2 class="section-title">Pricing Plans</h2>
+        <p class="section-subtitle">Choose the perfect plan for your business</p>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="price">$999<span style="font-size: 1.5rem;">/mo</span></div>
+                <p class="price-period">Perfect for small businesses</p>
+                <ul class="pricing-features">
+                    <li>Social Media Management</li>
+                    <li>Basic SEO</li>
+                    <li>Monthly Reports</li>
+                    <li>Email Support</li>
+                    <li>2 Campaign Revisions</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openModal('Starter')">Get Started</button>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-badge">MOST POPULAR</div>
+                <h3>Professional</h3>
+                <div class="price">$2,499<span style="font-size: 1.5rem;">/mo</span></div>
+                <p class="price-period">For growing businesses</p>
+                <ul class="pricing-features">
+                    <li>Everything in Starter</li>
+                    <li>Advanced SEO & PPC</li>
+                    <li>Content Marketing</li>
+                    <li>Weekly Reports</li>
+                    <li>Priority Support</li>
+                    <li>Unlimited Revisions</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openModal('Professional')">Get Started</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">$4,999<span style="font-size: 1.5rem;">/mo</span></div>
+                <p class="price-period">For large organizations</p>
+                <ul class="pricing-features">
+                    <li>Everything in Professional</li>
+                    <li>Dedicated Account Manager</li>
+                    <li>Custom Strategy</li>
+                    <li>Daily Reports</li>
+                    <li>24/7 Support</li>
+                    <li>Advanced Analytics</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openModal('Enterprise')">Get Started</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+        <h2 class="section-title">Latest Insights</h2>
+        <p class="section-subtitle">Stay updated with digital marketing trends</p>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-image">📱</div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>📅 Jan 15, 2026</span>
+                        <span>👤 Sarah Johnson</span>
+                    </div>
+                    <h3>10 Social Media Trends for 2026</h3>
+                    <p>Discover the latest trends shaping social media marketing and how to leverage them for your business growth.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-image">🔍</div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>📅 Jan 10, 2026</span>
+                        <span>👤 Mike Chen</span>
+                    </div>
+                    <h3>SEO Best Practices Guide</h3>
+                    <p>Learn the essential SEO strategies that will help your website rank higher in search results.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-image">📧</div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>📅 Jan 5, 2026</span>
+                        <span>👤 Emma Davis</span>
+                    </div>
+                    <h3>Email Marketing Automation</h3>
+                    <p>Maximize your email marketing ROI with smart automation strategies and personalization techniques.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="cta-content">
+            <h2>Ready to Accelerate Your Growth?</h2>
+            <p>Join hundreds of successful businesses that have transformed their digital presence with DigiBoost</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get Your Free Consultation</a>
+                <a href="#pricing" class="btn btn-secondary">View Our Plans</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Everything you need to know about our services</p>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    How long does it take to see results from digital marketing?
+                </div>
+                <div class="faq-answer">
+                    <p>While some tactics like PPC advertising can show immediate results, most digital marketing strategies require 3-6 months to demonstrate significant ROI. SEO typically takes 4-6 months, while social media and content marketing show progressive improvements over time. We provide monthly reports so you can track your progress every step of the way.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What makes DigiBoost different from other agencies?
+                </div>
+                <div class="faq-answer">
+                    <p>We combine data-driven strategies with creative excellence. Our team doesn't just execute campaigns – we become an extension of your business. We focus on transparent reporting, personalized strategies, and measurable results. Plus, you get a dedicated account manager who understands your industry and goals.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do I need to sign a long-term contract?
+                </div>
+                <div class="faq-answer">
+                    <p>We offer flexible engagement models. While we recommend at least a 6-month commitment to see substantial results, we also provide month-to-month options for businesses that prefer flexibility. Our goal is to earn your continued partnership through exceptional results, not contractual obligations.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Which digital marketing services do I need?
+                </div>
+                <div class="faq-answer">
+                    <p>The right mix depends on your business goals, target audience, and industry. During our discovery phase, we'll conduct a comprehensive audit and recommend the optimal strategy. Most businesses benefit from a combination of SEO, content marketing, and paid advertising, but we'll customize our approach to your specific needs.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do you measure success?
+                </div>
+                <div class="faq-answer">
+                    <p>We establish clear KPIs aligned with your business objectives from day one. Common metrics include website traffic, conversion rates, lead generation, ROI, engagement rates, and revenue growth. You'll receive detailed monthly reports with actionable insights and strategic recommendations.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can you work with my existing team?
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We love collaborating with in-house teams. We can complement your existing marketing efforts, provide specialized expertise in specific areas, or take full ownership of your digital marketing. We're flexible and adapt to your preferred working style.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Let's discuss how we can help your business grow</p>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p>Ready to take your digital marketing to the next level? Reach out to us and let's start a conversation.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Marketing Street, Digital City, DC 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2dad7dededdf2d6dbd5dbd0ddddc1c69cd1dddf">[email&#160;protected]</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>DigiBoost 🚀</h3>
+                <p>Your partner in digital marketing success. We help businesses grow through strategic online marketing solutions.</p>
+                <div class="social-links">
+                    <div class="social-icon">📘</div>
+                    <div class="social-icon">🐦</div>
+                    <div class="social-icon">📸</div>
+                    <div class="social-icon">💼</div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#services">Services</a>
+                <a href="#about">About Us</a>
+                <a href="#process">Our Process</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#services">Social Media Marketing</a>
+                <a href="#services">SEO Optimization</a>
+                <a href="#services">Email Marketing</a>
+                <a href="#services">PPC Advertising</a>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get the latest digital marketing tips and insights.</p>
+                <form id="newsletterForm" style="margin-top: 1rem;">
+                    <input type="email" placeholder="Your email" style="width: 100%; padding: 0.8rem; border-radius: 5px; border: none; margin-bottom: 0.5rem;">
+                    <button class="btn btn-primary" style="width: 100%;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 DigiBoost. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Get Started</h2>
+            <p>Thank you for your interest! Please fill out the form below and we'll get back to you within 24 hours.</p>
+            <form id="modalForm" style="margin-top: 2rem;">
+                <div class="form-group">
+                    <label for="modal-name">Name</label>
+                    <input type="text" id="modal-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-email">Email</label>
+                    <input type="email" id="modal-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-company">Company</label>
+                    <input type="text" id="modal-company">
+                </div>
+                <button type="submit" class="submit-btn">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Create particles for hero section
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll to top button
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Testimonials slider
+        const testimonials = [
+            {
+                text: "DigiBoost transformed our online presence completely. Their strategic approach to social media marketing helped us reach our target audience effectively. We saw a 250% increase in engagement within just 3 months!",
+                author: "John Doe",
+                position: "CEO, TechStart Inc",
+                avatar: "JD"
+            },
+            {
+                text: "The SEO strategies implemented by DigiBoost have been phenomenal. We went from page 5 to top 3 rankings for our key terms. Our organic traffic has tripled and leads are pouring in!",
+                author: "Sarah Williams",
+                position: "Marketing Director, GrowthCo",
+                avatar: "SW"
+            },
+            {
+                text: "Working with DigiBoost has been a game-changer. Their email marketing campaigns consistently deliver impressive ROI. Professional, creative, and results-driven - highly recommended!",
+                author: "Michael Chen",
+                position: "Founder, EcomPro",
+                avatar: "MC"
+            }
+        ];
+
+        let currentTestimonial = 0;
+
+        function rotateTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            const testimonial = testimonials[currentTestimonial];
+            
+            const testimonialElement = document.getElementById('testimonial');
+            testimonialElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                testimonialElement.innerHTML = `
+                    <p class="testimonial-text">"${testimonial.text}"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">${testimonial.avatar}</div>
+                        <div class="author-info">
+                            <h4>${testimonial.author}</h4>
+                            <p>${testimonial.position}</p>
+                        </div>
+                    </div>
+                `;
+                testimonialElement.style.opacity = '1';
+            }, 300);
+        }
+
+        setInterval(rotateTestimonial, 5000);
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('.submit-btn');
+            const originalText = btn.textContent;
+            btn.innerHTML = '<span class="loading"></span> Sending...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.textContent = '✓ Message Sent!';
+                contactForm.reset();
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+
+        // Newsletter Form Submission
+        const newsletterForm = document.getElementById('newsletterForm');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = newsletterForm.querySelector('button');
+            const originalText = btn.textContent;
+            btn.innerHTML = '<span class="loading"></span>';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.textContent = '✓ Subscribed!';
+                newsletterForm.reset();
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+
+        // Modal Functions
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modalTitle');
+
+        function openModal(plan) {
+            modalTitle.textContent = `Get Started with ${plan} Plan`;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Modal Form Submission
+        const modalForm = document.getElementById('modalForm');
+        modalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = modalForm.querySelector('.submit-btn');
+            const originalText = btn.textContent;
+            btn.innerHTML = '<span class="loading"></span> Processing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.textContent = '✓ Request Submitted!';
+                modalForm.reset();
+                setTimeout(() => {
+                    closeModal();
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }, 1500);
+            }, 1500);
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards, portfolio items, and other elements
+        document.querySelectorAll('.service-card, .portfolio-item, .blog-card, .pricing-card, .feature-item, .tech-item, .process-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + (element.textContent.includes('%') ? '%' : '+');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + (element.textContent.includes('%') ? '%' : '+');
+                }
+            }, 20);
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        const value = parseInt(text);
+                        animateCounter(stat, value);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Portfolio item click handler
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const title = item.querySelector('h3').textContent;
+                const description = item.querySelector('p').textContent;
+                alert(`${title}\n\n${description}\n\nClick OK to learn more about this project.`);
+            });
+        });
+
+        // Blog card click handler
+        document.querySelectorAll('.blog-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('read-more')) {
+                    const title = card.querySelector('h3').textContent;
+                    alert(`You clicked on: ${title}\n\nThis would normally open the full blog post.`);
+                }
+            });
+        });
+
+        // Add active state to navigation based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+                const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.style.color = '';
+                    });
+                    if (navLink) {
+                        navLink.style.color = 'var(--primary)';
+                    }
+                }
+            });
+        });
+
+        // Easter egg - Konami code
+        let konamiCode = [];
+        const konamiPattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.key);
+            konamiCode.splice(-konamiPattern.length - 1, konamiCode.length - konamiPattern.length);
+
+            if (konamiCode.join('').includes(konamiPattern.join(''))) {
+                document.body.style.animation = 'rainbow 2s linear infinite';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                    alert('🎉 You found the secret! Enjoy 20% off any plan with code: KONAMI20');
+                }, 2000);
+            }
+        });
+
+        // Add rainbow animation
+        const style = document.createElement('style');
+        style.textContent = `
+ 
